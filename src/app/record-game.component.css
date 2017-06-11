@@ -1,0 +1,40 @@
+.newentry{}
+
+.entrynewodd{
+
+}
+
+.entryneweven{}
+
+.entry{}
+
+.entrysubeven{}
+
+.entrysubodd{}
+
+.recordhead{
+  height: 50px;
+  border-bottom: 2px solid #4c4d4e;
+}
+
+.entryheadodd{
+
+}
+
+.entryheadeven{
+
+}
+
+tr:hover {background-color: #f5f5f5}
+
+button{
+
+  margin-top: 2px;
+  margin-right: .8em;
+  background-color: gray !important;
+  color:white;
+}
+
+.savebtn{
+  float:left;
+}

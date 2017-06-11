@@ -1,0 +1,38 @@
+<div>
+  <table>
+    <tr class="recordhead"><th class="entryheadodd">Player name</th><th class="entryheadeven">faction</th><th class="entryheadodd">target</th><th class="entryheadeven">has player won?</th></tr>
+    <tr class="entry" *ngFor="let player of players">
+      <td class="entrysubodd">{{player.name}}</td>
+      <td class="entrysubeven">{{player.faction.name}}</td>
+      <td class="entrysubodd">{{player.target.name}}</td>
+      <td class="entrysubeven">{{player.hasWon}}</td>
+      <td class="entrysubodd"><button class="delete" (click)="remove(player)">x</button></td>
+    </tr>
+    <tr class="newentry">
+      <td class="entrynewodd"><input #playerName type="text"/></td>
+      <td class="entryneweven">
+        <select [(ngModel)]="selectedFaction">
+          <option value="" selected disabled>Select that players faction</option>
+          <option *ngFor="let item of faction.availableFactions" [ngValue]="item">{{item.name}}</option>
+        </select>
+      </td>
+      <td class="entrynewodd">
+        <select [(ngModel)]="selectedTarget">
+          <option value="" selected disabled>Select that players target</option>
+          <option *ngFor="let item of faction.availableTargets" [ngValue]="item">{{item.name}}</option>
+        </select>
+      </td>
+      <td class="entryneweven">
+        <input #hasWon type="checkbox"/>
+      </td>
+      <td class="entrynewodd">
+        <button (click)="add(playerName.value, selectedFaction, selectedTarget, hasWon.checked); playerName.value=''; hasWon.checked=false;;">
+          Add
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+<button (click)="finalize();" class="savebtn">
+  Save Game
+</button>
