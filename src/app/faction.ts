@@ -6,6 +6,9 @@ export class Faction {
   usedFactions = new Array<FactionItem>();
   usedTargets = new Array<FactionItem>();
 
+  fedFaction;
+
+  messages = new Array<String>();
 
   constructor() {
     let cur: FactionItem = new FactionItem();
@@ -40,6 +43,7 @@ export class Faction {
 
     cur = new FactionItem();
     cur.name = 'Federal';
+    this.fedFaction = cur;
     this.availableTargets.push(cur);
 
   }
@@ -70,6 +74,39 @@ export class Faction {
     target.push(faction);
   }
 
+  /**
+   * this starts a full validation on the factions
+   */
+  validate(): Array<String> {
+    this.messages = new Array<String>();
+
+    this.validateAllChosenTargetsAreChosenFactions();
+
+    return this.messages;
+  }
+
+  /* this method validates that each selected target was also selected as faction, or is Fed */
+  private validateAllChosenTargetsAreChosenFactions() {
+
+    for (let i = 0; i < this.usedTargets.length; i++) {
+
+      let validTarget = false;
+      if (this.usedTargets[i] === this.fedFaction) {
+        validTarget = true;
+        continue;
+      }
+      for (let k = 0; k < this.usedFactions.length; k++) {
+        if (this.usedFactions[k] === this.usedTargets[i]) {
+          validTarget = true;
+          break;
+        }
+      }
+
+      if (!validTarget) {
+        this.messages.push('' + this.usedTargets[i].name + ' was not chosen as a faction.');
+      }
+    }
+  }
 
 }
 

@@ -1,4 +1,9 @@
 <h1>
   {{title}}
 </h1>
-<nasti-record-game></nasti-record-game>
+<nav>
+  <a routerLink="/newgame" routerLinkActive="active">Record a new Game</a>
+  <a routerLink="/listgames" routerLinkActive="active">List my games</a>
+  <a routerLink="/gamestats" routerLinkActive="active">Show games statistics</a>
+</nav>
+<router-outlet></router-outlet>

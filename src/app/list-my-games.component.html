@@ -1,0 +1,11 @@
+<h2>
+  My recorded games
+</h2>
+<div class="gameList">
+  <div  *ngFor="let game of myGames" class="gameListEntry">
+    <span (click)="switchExpandStatus(game)">{{game.id}}</span><span>{{game.players[0].faction.name}}</span>
+    <div *ngIf="isExpanded(game)">
+      <nasti-view-game-details [game]="game"></nasti-view-game-details>
+    </div>
+  </div>
+</div>
